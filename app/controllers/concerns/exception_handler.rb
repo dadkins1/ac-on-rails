@@ -22,7 +22,18 @@
 #LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
-class ApplicationController < ActionController::API
-  include Response
-  include ExceptionHandler
+# app/controllers/concerns/exception_handler.rb
+module ExceptionHandler
+  # provides the more graceful `included` method
+  extend ActiveSupport::Concern
+
+  included do
+    rescue_from ActiveRecord::RecordNotFound do |e|
+      json_response({ message: e.message }, :not_found)
+    end
+
+    rescue_from ActiveRecord::RecordInvalid do |e|
+      json_response({ message: e.message }, :unprocessable_entity)
+    end
+  end
 end
