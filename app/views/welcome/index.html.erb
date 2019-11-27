@@ -1,4 +1,30 @@
-<h2>Hello World</h2>
-<p>
-  The time is now <%= Time.now %>
-</p>
+<h1>AC on Rails - Device List</h1>
+<% @devices.each do |device| %>
+  <div style="border: 2px solid black">
+    <h3>Serial Number <%= device.serial_number %></h3>
+    <p>Firmware Version <%= device.firmware_version %></p>
+    <p>Registration Date <%= device.registration_date %></p>
+  </div>
+  <p></p>
+<% end %>
+<div style="border: 2px dashed black">
+<h3>Add a New Device (for testing)</h3>
+  <%= form_for @new_device do |f| %>
+    <div>
+      <%= f.label :serial_number %>
+      <%= f.text_field :serial_number %>
+    </div>
+    <div>
+      <%= f.label :firmware_version %>
+      <%= f.text_field :firmware_version %>
+    </div>
+    <div>
+      <%= f.label :registration_date %>
+      <%= f.date_field :registration_date %>
+    </div>
+    <div>
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
+

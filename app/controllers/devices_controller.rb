@@ -1,13 +1,11 @@
 class DevicesController < ApplicationController
   def index
-    @devices = Device.all
+    redirect_to root_path
   end
-  def new
-    @device = Device.new
-  end
+
   def create
     Device.create(device_params)
-    redirect_to devices_path
+    redirect_to root_path
   end
 
   private
