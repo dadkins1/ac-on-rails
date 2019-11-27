@@ -1,0 +1,10 @@
+<h1>AC on Rails - Devices</h1>
+<% @devices.each do |device| %>
+  <div style="border: 2px solid black">
+    <h3>Serial Number <%= device.serial_number %></h3>
+    <p>Firmware Version <%= device.firmware_version %></p>
+    <p>Registration Date <%= device.registration_date %></p>
+  </div>
+  <p></p>
+<% end %>
+

@@ -1,0 +1,20 @@
+<h1>AC on Rails - Add Device</h1>
+
+<%= form_for @device do |f| %>
+  <div>
+    <%= f.label :serial_number %>
+    <%= f.text_field :serial_number %>
+  </div>
+  <div>
+    <%= f.label :firmware_version %>
+    <%= f.text_field :firmware_version %>
+  </div>
+  <div>
+    <%= f.label :registration_date %>
+    <%= f.date_field :registration_date %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
+
