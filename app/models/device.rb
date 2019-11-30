@@ -1,3 +1,3 @@
 class Device < ApplicationRecord
-  has_many :comments
+  has_many :device_datum
 end

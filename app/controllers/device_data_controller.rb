@@ -1,9 +1,9 @@
 class DeviceDataController < ApplicationController
+  before_action :set_device
   before_action :set_device_datum, only: [:show, :update, :destroy]
 
   def index
-    @device_data = DeviceDatum.all
-    json_response(@device_data)
+    json_response(@device.device_datum)
   end
 
   def create
@@ -26,7 +26,11 @@ class DeviceDataController < ApplicationController
     params.require(:device_datum).permit(:temperature, :humidity, :carbon_monoxide, :status, :device_id)
   end
 
+  def set_device
+    @device = Device.find(params[:device_id])
+  end
+
   def set_device_datum
-    @device_datum = DeviceDatum.find(params[:id])
+    @device_datum = @device.device_data.find_by(params[:id])
   end
 end
