@@ -27,6 +27,6 @@ class DeviceDataController < ApplicationController
   end
 
   def set_device_datum
-    @device_datum = @device.device_datum.find_by(params[:id])
+    @device_datum = @device.device_datum.find(params[:id])
   end
 end
