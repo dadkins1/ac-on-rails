@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_27_125817) do
+ActiveRecord::Schema.define(version: 2019_11_30_140413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "device_data", force: :cascade do |t|
+    t.float "temperature"
+    t.float "humidity"
+    t.float "carbon_monoxide"
+    t.string "status"
+    t.bigint "device_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["device_id"], name: "index_device_data_on_device_id"
+  end
 
   create_table "devices", force: :cascade do |t|
     t.string "serial_number"
@@ -23,4 +34,5 @@ ActiveRecord::Schema.define(version: 2019_11_27_125817) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "device_data", "devices"
 end

@@ -1,0 +1,2 @@
+class DeviceDataController < ApplicationController
+end
