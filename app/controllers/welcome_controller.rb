@@ -1,4 +1,7 @@
 class WelcomeController < ApplicationController
+  def api
+  end
+
   def index
     if params[:search].blank?
       @devices = Device.all

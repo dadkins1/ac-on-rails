@@ -1,0 +1,77 @@
+<style>
+td, th {
+  border: 1px solid #aaaaaa;
+  padding: 6px;
+}
+
+tr:nth-child(even) {
+  background-color: #aaaaaa;
+}
+</style>
+<h2>DEVICE API REFERENCE</h2>
+<p>Note: Currently there is no authentication for the Device API.</p>
+<p>Please use care when running these commands as there is also no backup for the database!</p>
+<table>
+  <tr>
+    <th>Endpoint</th>
+    <th>HTTP Verb</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>/devices</td>
+    <td>GET</td>
+    <td>Returns a JSON object of all devices.</td>
+  </tr>
+  <tr>
+    <td>/devices</td>
+    <td>POST</td>
+    <td>Registers a new device. Required args: serial_number, firmware_version, registration_date.</td>
+  </tr>
+  <tr>
+    <td>/devices/:id</td>
+    <td>GET</td>
+    <td>Returns a JSON object for the specified device.</td>
+  </tr>
+  <tr>
+    <td>/devices/:id</td>
+    <td>DELETE</td>
+    <td>Permanently removes the specified device.</td>
+  </tr>
+  <tr>
+    <td>/devices/:id/device_data</td>
+    <td>POST</td>
+    <td>Adds new data for the specified device. Required args: temperature, humidity, carbon_monoxide, status, device_id.</td>
+  </tr>
+  <tr>
+    <td>/devices/:id/device_data/:id</td>
+    <td>DELETE</td>
+    <td>Permanently removes the specified data record (useful for testing).</td>
+  </tr>
+</table>
+
+&nbsp;
+<h2>DEVICE API EXAMPLES</h2>
+<p>These examples use httpie (see <a href='https://httpie.org'><i>here</i></a>).</p>
+<table>
+  <tr>
+    <th>Command</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>http POST https://ac-on-rails.herokuapp.com/devices serial_number=42 firmware_version=3.14 registration_date=2019-12-16</td>
+    <td>Adds a new device.</td>
+  </tr>
+  <tr>
+    <td>http DELETE https://ac-on-rails.herokuapp.com/devices/8</td>
+    <td>Removes device with id 8.</td>
+  </tr>
+  <tr>
+    <td>http GET https://ac-on-rails.herokuapp.com/devices</td>
+    <td>Retrieves JSON for all registered devices.</td>
+  </tr>
+  <tr>
+    <td>http POST https://ac-on-rails.herokuapp.com/devices/9/device_data temperature=-45 humidity=22 carbon_monoxide=60 status="gas_leak" device_id=9</td>
+    <td>Adds a single data record for the specified device.</td>
+  </tr>
+</table>
+
