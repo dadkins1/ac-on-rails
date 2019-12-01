@@ -1,12 +1,16 @@
-<h2>ALL Device Data for S/N <%=@device.serial_number%></h2>
-<% @device.device_datum.each do |datum| %>
-  <div style="border: 2px solid black">
-    <p>Timestamp: <%= datum.created_at %></p>
-    <p>Temperature (Celsius): <%= datum.temperature %></p>
-    <p>Air Humidity Percentage: <%= datum.humidity %></p>
-    <p>Carbon Monoxide (PPM): <%= datum.carbon_monoxide %></p>
-    <p>Device Health Status: <%= datum.status %></p>
-  </div>
-  <p></p>
+<h2>Device Data for S/N <%=@device.serial_number%></h2>
+<% if @device.device_datum.count > 0 %>
+  <% @device.device_datum.each do |datum| %>
+    <div style="border: 2px solid black">
+      <p>Timestamp: <%= datum.created_at %></p>
+      <p>Temperature (Celsius): <%= datum.temperature %></p>
+      <p>Air Humidity Percentage: <%= datum.humidity %></p>
+      <p>Carbon Monoxide (PPM): <%= datum.carbon_monoxide %></p>
+      <p>Device Health Status: <%= datum.status %></p>
+    </div>
+    <p></p>
+  <% end %>
+<% else %>
+<h3>No Data</h3>
 <% end %>
 
